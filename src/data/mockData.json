@@ -1,0 +1,98 @@
+[
+  {
+    "id": 0,
+    "img": "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+    "title": "Detached house • 5y old",
+    "price": 750000,
+    "subtitle": "742 Evergreen Terrace",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "userImg": "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80",
+    "userName": "Tiffany Heffner",
+    "userPhone": "(555) 555-4321"
+  },
+  {
+    "id": 1,
+    "img": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "title": "Detached house • 2y old",
+    "price": 500000,
+    "subtitle": "2/2 Linkoln Avenue",
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "userImg": "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "userName": "Thomas Green",
+    "userPhone": "(555) 555-3545"
+  },
+  {
+    "id": 2,
+    "img": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80",
+    "title": "Detached house • New",
+    "price": 227500,
+    "subtitle": "158 Washington Street",
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "userImg": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "userName": "Anna Collins",
+    "userPhone": "(555) 555-2543"
+  },
+  {
+    "id": 3,
+    "img": "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1278&q=80",
+    "title": "Detached house • 10y old",
+    "price": 368000,
+    "subtitle": "42 Kennedy Terrace",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "userImg": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "userName": "Summer Jones",
+    "userPhone": "(555) 555-1354"
+  },
+  {
+    "id": 4,
+    "img": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "title": "Detached house • 12y old",
+    "price": 259000,
+    "subtitle": "69 Maple Street",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "userImg": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "userName": "James Smith",
+    "userPhone": "(555) 555-1234"
+  },
+  {
+    "id": 5,
+    "img": "https://images.unsplash.com/photo-1576493169316-0745093ae312?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "title": "Detached house • 3y old",
+    "price": 699000,
+    "subtitle": "99 Sunny Street",
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "userImg": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "userName": "Julia Fischer",
+    "userPhone": "(555) 555-4521"
+  },
+  {
+    "id": 6,
+    "img": "https://images.unsplash.com/photo-1430285561322-7808604715df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "title": "Duplex house • 11y old",
+    "price": 299000,
+    "subtitle": "58 Liberty Avenue",
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "userImg": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    "userName": "Julian Henry",
+    "userPhone": "(555) 555-1335"
+  },
+  {
+    "id": 7,
+    "img": "https://images.unsplash.com/photo-1584738766473-61c083514bf4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "title": "Detached house • 17y old",
+    "price": 310000,
+    "subtitle": "21 Johnson Street",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "userImg": "https://images.unsplash.com/photo-1573600073955-f15b3b6caab7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80",
+    "userName": "Aubrey McCormack",
+    "userPhone": "(555) 555-1542"
+  }
+]
