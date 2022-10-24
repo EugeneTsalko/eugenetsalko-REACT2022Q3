@@ -1,6 +1,6 @@
 import React from 'react';
 import './Form.scss';
-import { FormFields } from './Form.types';
+import { Errors, FormFields } from './Form.types';
 
 type FormValues = {
   firstName: string | undefined;
@@ -16,10 +16,12 @@ type FormState = {
   disabled: boolean;
   image: string;
   message: string;
+  errors: Errors;
+  isValid: boolean;
 };
 
 type FormProps = {
-  onChange: (e: FormValues) => void;
+  onChange: (params: FormValues) => void;
 };
 
 export class Form extends React.Component<FormProps, FormState> {
@@ -31,7 +33,6 @@ export class Form extends React.Component<FormProps, FormState> {
   maleRef: React.RefObject<HTMLInputElement>;
   femaleRef: React.RefObject<HTMLInputElement>;
   dataAgreeRef: React.RefObject<HTMLInputElement>;
-  messageRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: FormProps) {
     super(props);
@@ -39,6 +40,14 @@ export class Form extends React.Component<FormProps, FormState> {
       disabled: true,
       image: '',
       message: '',
+      isValid: true,
+      errors: {
+        firstName: '',
+        lastName: '',
+        birthDate: '',
+        location: '',
+        sex: '',
+      },
     };
     this.firstNameRef = React.createRef();
     this.lastNameRef = React.createRef();
@@ -48,39 +57,78 @@ export class Form extends React.Component<FormProps, FormState> {
     this.femaleRef = React.createRef();
     this.dataAgreeRef = React.createRef();
     this.fileRef = React.createRef();
-    this.messageRef = React.createRef();
   }
 
-  setDisabled = (option: boolean) => {
-    if (option) {
-      this.setState({ disabled: true });
-    } else {
-      this.setState({ disabled: false });
-    }
+  setDisabled = (disabled: boolean) => {
+    this.setState({ disabled });
   };
 
-  validate = (data: Record<string, unknown>) => {
-    const isValid = Object.values(data).every((value) => value !== '');
+  validate = () => {
+    const errors: Errors = {
+      firstName: '',
+      lastName: '',
+      birthDate: '',
+      location: '',
+      sex: '',
+    };
 
-    if (isValid) {
-      this.setDisabled(false);
-      return true;
-    } else {
-      this.setDisabled(true);
-      return false;
+    let isValid = true;
+
+    const formData = {
+      firstName: this.firstNameRef.current?.value,
+      lastName: this.lastNameRef.current?.value,
+      birthDate: this.dateRef.current?.value,
+      location: this.locationRef.current?.value,
+      sex: this.detectSex(),
+    };
+
+    if (!formData.firstName?.trim().length || formData.firstName?.length < 2) {
+      isValid = false;
+      errors.firstName = 'Please enter correct first name';
     }
+
+    if (!formData.lastName?.trim().length || formData.lastName?.length < 2) {
+      isValid = false;
+      errors.lastName = 'Please enter correct last name';
+    }
+
+    if (!formData.birthDate) {
+      isValid = false;
+      errors.birthDate = 'Please enter birth date';
+    }
+
+    if (!formData.location) {
+      isValid = false;
+      errors.location = 'Please select location';
+    }
+
+    if (formData.sex === '') {
+      isValid = false;
+      errors.sex = 'Please choose male or female';
+    }
+
+    this.setState({ errors });
+    this.setState({ isValid });
+    this.setState({ disabled: !isValid });
+
+    return isValid;
   };
 
   detectSex = () => {
-    if (!this.maleRef.current?.checked && !this.femaleRef.current?.checked) {
-      return '';
-    } else if (this.maleRef.current?.checked) {
+    if (this.maleRef.current?.checked) {
       return 'male';
-    } else return 'female';
+    }
+
+    if (this.femaleRef.current?.checked) {
+      return 'female';
+    }
+
+    return '';
   };
 
   handleImage = (event: React.FormEvent) => {
     const target = event.target as HTMLInputElement;
+
     if (target.files && target.files[0]) {
       this.setState({
         image: URL.createObjectURL(target.files[0]),
@@ -93,43 +141,58 @@ export class Form extends React.Component<FormProps, FormState> {
     setTimeout(() => this.setState({ message: '' }), 3000);
   };
 
-  handleChange: React.FormEventHandler<HTMLFormElement & FormFields> = () => {
-    const formData = {
-      firstName: this.firstNameRef.current?.value,
-      lastName: this.lastNameRef.current?.value,
-      birthDate: this.dateRef.current?.value,
-      location: this.locationRef.current?.value,
-      sex: this.detectSex(),
-    };
-    this.validate(formData);
+  handleChange = () => {
+    if (this.state.isValid) {
+      this.setState({ disabled: false });
+    } else {
+      this.validate();
+    }
+
+    setTimeout(() => {
+      console.log(this.state);
+    }, 0);
   };
 
   handleSubmit: React.FormEventHandler<HTMLFormElement & FormFields> = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
 
-    const formData: FormValues = {
-      firstName: this.firstNameRef.current?.value,
-      lastName: this.lastNameRef.current?.value,
-      birthDate: this.dateRef.current?.value,
-      location: this.locationRef.current?.value,
-      dataAgree: this.dataAgreeRef.current?.checked,
-      sex: this.detectSex(),
-      photo: this.state.image,
-    };
+    if (this.validate()) {
+      const formData: FormValues = {
+        firstName: this.firstNameRef.current?.value,
+        lastName: this.lastNameRef.current?.value,
+        birthDate: this.dateRef.current?.value,
+        location: this.locationRef.current?.value,
+        dataAgree: this.dataAgreeRef.current?.checked,
+        sex: this.detectSex(),
+        photo: this.state.image,
+      };
 
-    this.props.onChange(formData);
+      this.props.onChange(formData);
 
-    this.updateMessage();
+      this.updateMessage();
 
-    form.reset();
+      form.reset();
+
+      this.setState({ disabled: true, image: '' });
+    }
+
     this.setDisabled(true);
+
+    setTimeout(() => {
+      console.log(this.state);
+    }, 0);
   };
 
   render() {
     return (
       <>
-        <form className="form" onSubmit={this.handleSubmit} onChange={this.handleChange}>
+        <form
+          className="form"
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          data-testid="react-form"
+        >
           <h1 className="form__title">Create card</h1>
 
           <label htmlFor="firstName">First name:</label>
@@ -141,8 +204,8 @@ export class Form extends React.Component<FormProps, FormState> {
             className="form__text-input"
             placeholder="Enter your first name..."
             autoComplete="off"
-            required
           />
+          <div className="form__error">{this.state.errors.firstName}</div>
 
           <label htmlFor="lastName">Last name:</label>
           <input
@@ -153,25 +216,24 @@ export class Form extends React.Component<FormProps, FormState> {
             className="form__text-input"
             placeholder="Enter your last name..."
             autoComplete="off"
-            required
           />
+          <div className="form__error">{this.state.errors.lastName}</div>
 
           <label htmlFor="birthDate">Birth date:</label>
           <input
             ref={this.dateRef}
             type="date"
-            id="birthDate"
+            data-testid="react-birthDate"
             name="birthDate"
             className="form__date-input"
-            required
           />
+          <div className="form__error">{this.state.errors.birthDate}</div>
 
           <label htmlFor="location">Location:</label>
           <select
             className="form__select"
-            id="location"
+            data-testid="react-location"
             name="location"
-            required
             defaultValue={''}
             ref={this.locationRef}
           >
@@ -186,6 +248,7 @@ export class Form extends React.Component<FormProps, FormState> {
             <option>North America</option>
             <option>South America</option>
           </select>
+          <div className="form__error">{this.state.errors.location}</div>
 
           <fieldset>
             <legend>Your sex:</legend>
@@ -193,8 +256,8 @@ export class Form extends React.Component<FormProps, FormState> {
               type="radio"
               id="radio1"
               name="sex"
+              data-testid="react-sex"
               className="form__radio-input"
-              required
               ref={this.maleRef}
             />
             <label htmlFor="radio1">Male</label>
@@ -207,6 +270,7 @@ export class Form extends React.Component<FormProps, FormState> {
             />
             <label htmlFor="radio2">Female</label>
           </fieldset>
+          <div className="form__error">{this.state.errors.sex}</div>
 
           <label htmlFor="photo">Profile photo:</label>
           <input
@@ -230,14 +294,13 @@ export class Form extends React.Component<FormProps, FormState> {
 
           <button
             type="submit"
+            disabled={this.state.disabled}
             className={(this.state.disabled && 'form__btn form__btn--disabled') || 'form__btn'}
           >
             Create
           </button>
         </form>
-        <div className="form__message" ref={this.messageRef}>
-          {this.state.message}
-        </div>
+        <div className="form__message">{this.state.message}</div>
       </>
     );
   }

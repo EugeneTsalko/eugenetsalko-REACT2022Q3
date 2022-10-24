@@ -7,3 +7,11 @@ export type FormFields = {
   sex: HTMLInputElement;
   photo: HTMLInputElement;
 };
+
+export type Errors = {
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  location: string;
+  sex: string;
+};

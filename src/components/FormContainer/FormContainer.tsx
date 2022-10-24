@@ -35,7 +35,7 @@ export class FormContainer extends React.Component<FormProps, FormState> {
     return (
       <>
         <Form onChange={this.handleChange} />
-        <div className="form-cards">
+        <div className="form-cards" data-testid="react-formcards">
           {this.state.persons &&
             this.state.persons.map((person, index) => {
               return <PersonCard data={person} key={index}></PersonCard>;

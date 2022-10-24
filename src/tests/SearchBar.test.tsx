@@ -20,7 +20,7 @@ const setLocalStorage = (key: string, value: string) => {
 };
 
 test('renders searchbar', () => {
-  render(<SearchBar />);
+  render(<SearchBar onChange={() => console.log('42')} />);
   const placeholderText = screen.getByPlaceholderText('Search...');
   expect(placeholderText).toBeInTheDocument();
 });
@@ -31,7 +31,7 @@ describe('searchbar with localstorage', () => {
   });
 
   test('testing localStorage', () => {
-    render(<SearchBar />);
+    render(<SearchBar onChange={() => console.log('42')} />);
     const input: HTMLInputElement = screen.getByPlaceholderText('Search...');
     input.value = '123';
     setLocalStorage('inputValue', input.value);
