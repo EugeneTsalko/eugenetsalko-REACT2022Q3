@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  gap: 2px;
+  align-self: center;
+
+  li {
+    border: 1px solid #FF8787;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #fa6262;
+    }
+
+    a {
+      padding: 10px;
+    }
+  }
+  
+    .selected {
+      background-color: #FF8787;
+    }
+
+
+  
+}
